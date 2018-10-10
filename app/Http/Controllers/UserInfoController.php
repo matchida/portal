@@ -21,8 +21,8 @@ class UserInfoController extends Controller
         $userInfo = $this->__getUserInfo(1);
 
         return view('user', [
-                'title' => 'Portal',
-                'userInfo' => $userInfo,
+            'title' => 'ユーザ情報',
+            'userInfo' => $userInfo,
         ], $userInfo);
     }
 
