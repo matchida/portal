@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'PortalController@index');
+Route::get('/', 'IndexController@index');
+Route::get('/user', 'UserInfoController@index');
+Route::get('/work', 'WorkInfoController@index');

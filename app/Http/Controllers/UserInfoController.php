@@ -1,6 +1,6 @@
 <?php
 /**
- * PortalController.php
+ * UserInfoController.php
  * 
  * @author SEP Machida <smachidatakahiro@se-project.co.jp>
  */
@@ -12,7 +12,7 @@ use App\Model\UserInformation;
 use Illuminate\Http\Request;
 use DateTime;
 
-class PortalController extends Controller
+class UserInfoController extends Controller
 {
     public function index() {
         // @TODO ログイン機能(ローカルでしか使わんけんいらんかも)
@@ -20,7 +20,7 @@ class PortalController extends Controller
         // @TODO ログインユーザの情報を取得
         $userInfo = $this->__getUserInfo(1);
 
-        return view('top', [
+        return view('user', [
                 'title' => 'Portal',
                 'userInfo' => $userInfo,
         ], $userInfo);
