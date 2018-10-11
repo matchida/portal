@@ -14,6 +14,10 @@ use DateTime;
 
 class UserInfoController extends Controller
 {
+    /**
+     * Function index
+     * 
+     */
     public function index() {
         // @TODO ログイン機能(ローカルでしか使わんけんいらんかも)
 

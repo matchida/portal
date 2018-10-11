@@ -8,5 +8,8 @@ class UserInformation extends Model
 {
     protected $table = 'tbl_user_information';
 
+    /**
+     * @var 削除フラグ 0:無効 1:有効
+     */
     const DEL_FLG_FALSE = 0;
 }
