@@ -12,5 +12,9 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::get('/user', 'UserInfoController@index');
-Route::get('/work', 'WorkInfoController@index');
+
+// ユーザ関連
+Route::get('/user', 'UserController@index');
+Route::get('user/add', 'UserController@add');
+
+Route::get('/work', 'WorkController@index');

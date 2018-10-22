@@ -1,6 +1,6 @@
 <?php
 /**
- * UserInfoController.php
+ * UserController.php
  * 
  * @author SEP Machida <smachidatakahiro@se-project.co.jp>
  */
@@ -12,11 +12,12 @@ use App\Model\UserInformation;
 use Illuminate\Http\Request;
 use DateTime;
 
-class UserInfoController extends Controller
+class UserController extends Controller
 {
     /**
      * Function index
      * 
+     * @return void
      */
     public function index() {
         // @TODO ログイン機能(ローカルでしか使わんけんいらんかも)
@@ -28,6 +29,15 @@ class UserInfoController extends Controller
             'title' => 'ユーザ情報',
             'userInfo' => $userInfo,
         ], $userInfo);
+    }
+
+    /**
+     * Function add
+     * 
+     * @return void
+     */
+    public function add() {
+        echo 'add';
     }
 
     /**
