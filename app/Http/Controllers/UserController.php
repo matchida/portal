@@ -17,11 +17,6 @@ class UserController extends Controller
     public function index()
     {
         $users = UserInfo::all();
-        // $user = new UserInfo;
-        // echo '<pre>';
-        // var_dump($user->getData());
-        // echo '</pre>';
-        // exit;
         return view('users.index', [
             'title' => 'Portal',
             'users' => $users,
@@ -66,7 +61,7 @@ class UserController extends Controller
             $userInfo->last_name = $request->last_name;
             $userInfo->email = $request->email;
             $userInfo->save();
-            // DB::commit();
+            DB::commit();
         } catch (Exception $e) {
             echo $e->getMessage();
             DB::rollback();
@@ -84,8 +79,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        var_dump($user);
-        exit;
         return view('users.show', ['user' => $user]);
     }
 
