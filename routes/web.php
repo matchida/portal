@@ -12,5 +12,9 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::get('/user', 'UserInfoController@index');
-Route::get('/work', 'WorkInfoController@index');
+// ユーザ関連
+Route::resource('users', 'UserController');
+Route::get('users/{user}', function (App\Model\User $user) {
+    return $user;
+});
+Route::get('/work', 'WorkController@index');

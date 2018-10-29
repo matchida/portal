@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkInfoController.php
+ * WorkController.php
  * 
  * @author SEP Machida <smachidatakahiro@se-project.co.jp>
  */
@@ -12,7 +12,7 @@ use App\Model\UserInformation;
 use App\Model\WorkInformation;
 use Illuminate\Http\Request;
 
-class WorkInfoController extends Controller
+class WorkController extends Controller
 {
     /**
      * Function index
