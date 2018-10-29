@@ -1,108 +1,125 @@
 <?php
-/**
- * UserController.php
- * 
- * @author SEP Machida <smachidatakahiro@se-project.co.jp>
- */
 
 namespace App\Http\Controllers;
 
-use App\Model\User;
-use App\Model\UserInformation;
 use Illuminate\Http\Request;
-use DateTime;
+use App\Model\User;
+use App\Model\UserInformation as UserInfo;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     /**
-     * Function index
-     * 
-     * @return void
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function index() {
-        // @TODO ログイン機能(ローカルでしか使わんけんいらんかも)
-
-        // @TODO ログインユーザの情報を取得
-        $userInfo = $this->__getUserInfo(1);
-
-        return view('user', [
-            'title' => 'ユーザ情報',
-            'userInfo' => $userInfo,
-        ], $userInfo);
+    public function index()
+    {
+        $users = UserInfo::all();
+        // $user = new UserInfo;
+        // echo '<pre>';
+        // var_dump($user->getData());
+        // echo '</pre>';
+        // exit;
+        return view('users.index', [
+            'title' => 'Portal',
+            'users' => $users,
+        ]);
     }
 
     /**
-     * Function add
-     * 
-     * @return void
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function add() {
-        echo 'add';
+    public function create()
+    {
+        return view('users.create', [
+            'title' => 'Create User',
+        ]);
     }
 
     /**
-     * function __getUserInfo
-     * ユーザIDよりログインユーザの情報を取得
-     * 
-     * @param  int userId
-     * 
-     * @return array
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    private function __getUserInfo(int $userId) {
-        $array = array();
-        // @TODO ログインユーザの情報を取得
-        $user = User::get(['user_id', 'user_type', 'group_id'])
-                    ->where('user_id', $userId)
-                    ->where('del_flg', UserInformation::DEL_FLG_FALSE)
-                    ->toArray();
+    public function store(Request $request)
+    {
+        // トランザクション開始
+        DB::beginTransaction();
+        try {
+            // ユーザマスタ情報登録
+            $user = new User;
+            $userId = $user->_getLastUserId();
+            $user->user_id = $userId;
+            $user->password = $request->password;
+            $user->user_type = $request->user_type;
+            $user->save();
 
-        // 存在確認
-        if (empty($user)) {
-            return array();
+            // ユーザ情報登録
+            $userInfo = new UserInfo;
+            $userInfo->user_id = $userId;
+            $userInfo->first_name = $request->first_name;
+            $userInfo->last_name = $request->last_name;
+            $userInfo->email = $request->email;
+            $userInfo->save();
+            // DB::commit();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            DB::rollback();
+            throw new Exception;
         }
         
-        $userInfo = UserInformation::get()->where('user_id', $userId)->toArray();
-
-        // 存在確認
-        if (empty($user)) {
-            return array();
-        }
-        
-        $array = [
-            'user_id' => $user[0]['user_id'],
-            'user_type' => $user[0]['user_type'],
-            'group_id' => $user[0]['group_id'],
-            'user_name' => $userInfo[0]['first_name'] . ' ' . $userInfo[0]['last_name'],
-            'birthday' => date('Y年m月d日', strtotime($userInfo[0]['birthday'])),
-            'joined' => date('Y年m月d日', strtotime($userInfo[0]['joined'])),
-            'like_program' => $userInfo[0]['like_program'],
-            'like_database' => $userInfo[0]['like_database'],
-            'interested' => $userInfo[0]['interested'],
-            'listening' => $userInfo[0]['listening'],
-            'comment' => $userInfo[0]['comment'],
-        ];
-
-        $joinedDay = explode('-', $userInfo[0]['joined']);
-        $array['working_year'] = $this->__calcWorkingYearFromJoined($joinedDay[0], $joinedDay[1], $joinedDay[2]) . '年';
-
-        return $array;
+        return redirect('users');
     }
 
     /**
-     * function __calcWorkingYearFromJoined
-     * 入社日より勤続年数を求める
-     * 
-     * @param string  $year  年
-     * @param string  $month 月
-     * @param string  $day   日
-     * 
-     * @return string $year  勤続年数
+     * Display the specified resource.
+     *
+     * @param  \App\User $user
+     * @return \Illuminate\Http\Response
      */
-    private function __calcWorkingYearFromJoined(string $year, string $month, string $day) {
-        $now = new DateTime();
-        $joinedDay = new DateTime($year.sprintf('%02d', $month). sprintf('%02d', $day));
-        $interval = $now->diff($joinedDay);
+    public function show(User $user)
+    {
+        var_dump($user);
+        exit;
+        return view('users.show', ['user' => $user]);
+    }
 
-        return $interval->y;
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
