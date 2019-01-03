@@ -1,11 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.common')
 @section('title', $title)
-@section('content')
-    <div>
-        <ul>
-            <li><a href ="/users"><h2>user</h2></a></li>
-            <li><a href ="/users/create"><h2>User Create</h2></a></li>
-            <li><a href ="/work"><h2>work</h2></a></li>
-        </ul>
-    </div>
+@section('keywords', 'A,B,C')
+@section('description', '説明文')
+@section('pageCss')
+    <link href="/css/page.css" rel="stylesheet">
 @endsection
+@include('layouts.head')
+@include('layouts.header')
+@section('content')
+    <p>コンテンツ内容が入ります</p>
+@endsection
+
+@include('layouts.sub')
+ 
+@section('pageSub')
+    <p>個別サイドバーの内容</p>
+@endsection
+
+@section('pageJs')
+    <script src="/js/page.js"></script>
+@endsection
+@include('layouts.footer')
