@@ -9,3 +9,8 @@
 
 ## 構築手順
 そのうち
+
+## コンテナ起動
+```bash
+docker-compose up -d nginx mysql phpmyadmin workspace
+```
