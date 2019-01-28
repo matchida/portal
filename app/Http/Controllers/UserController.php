@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $users = UserInfo::all();
         return view('users.index', [
-            'title' => 'Portal',
+            'title' => 'Users',
             'users' => $users,
         ]);
     }
@@ -77,9 +77,10 @@ class UserController extends Controller
      * @param  \App\User $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('users.show', ['user' => $user]);
+        $user = new User;
+        return view('users.show', ['user' => $user->_getuserByUserId($id)]);
     }
 
     /**
@@ -88,9 +89,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        var_dump($user);
+        exit;
     }
 
     /**

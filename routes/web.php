@@ -14,7 +14,4 @@
 Route::get('/', 'IndexController@index');
 // ユーザ関連
 Route::resource('users', 'UserController');
-Route::get('users/{user}', function (App\Model\User $user) {
-    return $user;
-});
 Route::get('/work', 'WorkController@index');
