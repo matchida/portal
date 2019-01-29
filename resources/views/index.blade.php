@@ -11,7 +11,10 @@
     <div>
         <table>
             <tr>
-                <td><a href="/users">社員一覧</a>
+                <td><a href="/groups">グループ一覧</a></td>
+            </tr>
+            <tr>
+                <td><a href="/users">社員一覧</a></td>
             </tr>
         </table>
     </div>
