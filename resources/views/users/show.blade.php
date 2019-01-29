@@ -11,8 +11,6 @@
     {{-- 編集・削除ボタン --}}
     <div>
         <a href="{{ url('users/'. $user['user_id']. '/edit') }}" class="btn btn-primary">編集</a>
-        {{-- 削除ボタンは後で正式なものに置き換えます --}}
-        <a href="#" class="btn btn-danger">削除</a>
     </div>
 
     {{-- ユーザー1件の情報 --}}

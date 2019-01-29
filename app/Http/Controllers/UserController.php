@@ -92,10 +92,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        var_dump($user);
-        exit;
+        $user = new User;
+        return view('users.edit', [
+            'title' => $id,
+            'user' => $user->_getuserByUserId($id)
+        ]);
     }
 
     /**
