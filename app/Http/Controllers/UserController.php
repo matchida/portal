@@ -80,7 +80,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user = new User;
-        return view('users.show', ['user' => $user->_getuserByUserId($id)]);
+        return view('users.show', [
+            'title' => $id,
+            'user' => $user->_getuserByUserId($id)
+        ]);
     }
 
     /**

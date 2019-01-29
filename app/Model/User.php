@@ -19,6 +19,33 @@ class User extends Model
     const UPDATED_AT = null;
 
     /**
+     * @var ユーザタイプ
+     */
+    const USER_TYPE = [
+        '1' => '主任',
+        '2' => 'リーダー',
+        '3' => 'メンバー',
+    ];
+
+    /**
+     * @var グループ名
+     */
+    const GROUP_NAME = [
+        '111' => '1課1グループ1班',
+        '112' => '1課1グループ2班',
+        '113' => '1課1グループ3班',
+        '121' => '1課2グループ1班',
+        '122' => '1課2グループ2班',
+        '123' => '1課2グループ3班',
+        '211' => '2課1グループ1班',
+        '212' => '2課1グループ2班',
+        '213' => '2課1グループ3班',
+        '221' => '2課1グループ1班',
+        '222' => '2課2グループ2班',
+        '223' => '2課2グループ3班',
+    ];
+
+    /**
      * Function _getuserByUserId
      * ユーザIDを元にユーザの基本情報を取得する
      *
@@ -38,13 +65,13 @@ class User extends Model
 
         $user = $user[0];
         $ret['user_id'] = $user->user_id;
-        $ret['user_type'] = $user->user_type;
-        $ret['group'] = $user->group_id;
-        $ret['group'] = UserInformation::GROUP_NAME[$user->group_id];
+        $ret['user_type'] = self::USER_TYPE[$user->user_type];
+        $ret['group'] = !empty($user->group_id) ? $user->group_id : '';
+        $ret['group'] = !empty($user->group_id) ? self::GROUP_NAME[$user->group_id] : '';
         $ret['name'] = $user->first_name . ' ' . $user->last_name;
         $ret['email'] = $user->email;
-        $ret['birthday'] = date('Y年n月j日', strtotime($user['birthday']));
-        $ret['joined'] = date('Y年n月j日', strtotime($user['joined']));
+        $ret['birthday'] = !empty($user['birthday']) ? date('Y年n月j日', strtotime($user['birthday'])) : '';
+        $ret['joined'] = !empty($user['joined']) ? date('Y年n月j日', strtotime($user['joined'])) : '';
         $ret['program'] = $user->like_program;
         $ret['database'] = $user->like_database;
         $ret['interested'] = $user->interested;

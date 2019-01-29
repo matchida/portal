@@ -1,4 +1,5 @@
 @extends('layouts.common')
+@section('title', '社員番号 ' . $title)
 @section('description', 'ユーザ詳細')
 @section('pageCss')
     <link href="/css/page.css" rel="stylesheet">
