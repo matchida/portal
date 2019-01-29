@@ -102,6 +102,15 @@ class UserController extends Controller
     }
 
     /**
+     * @TODO ルーティング設定
+     */
+    public function confirm()
+    {
+        var_dump('編集確認画面');
+        exit;
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -111,6 +120,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    /**
+     * @TODO ルーティング設定
+     */
+    public function delete()
+    {
+        var_dump('削除確認画面');
+        exit;
     }
 
     /**

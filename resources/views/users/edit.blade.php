@@ -12,8 +12,6 @@
         {{-- 編集・削除ボタン --}}
         <div>
             <button type="submit" name="confirm">確認</button>
-            {{-- 削除ボタンは後で正式なものに置き換えます --}}
-            <a href="#" class="btn btn-danger">削除</a>
         </div>
         {{-- @TODO 並び順考える --}}
         <div>
@@ -34,6 +32,9 @@
             <label>コメント</label>
             <input id="comment" value="コメント">
         </div>
+    </form>
+    <form method="post" action="{{ '/' . 'users/' . $user['user_id']. '/delete' }}">
+        <button type="submit" name="delete">削除</button>
     </form>
 </div>
 @endsection
