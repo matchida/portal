@@ -8,7 +8,13 @@
 @include('layouts.head')
 @include('layouts.header')
 @section('content')
-    <p>コンテンツ内容が入ります</p>
+    <div>
+        <table>
+            <tr>
+                <td><a href="/users">社員一覧</a>
+            </tr>
+        </table>
+    </div>
 @endsection
 
 @include('layouts.sub')
