@@ -13,15 +13,15 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>{{ __('ID') }}</th>
-                    <th>{{ __('Name') }}</th>
+                    <th>社員番号</th>
+                    <th>名前</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($users as $user)
                     <tr>
                         <td>{{ $user->user_id }}</td>
-                        <td><a href="{{ url('users/' . $user->user_id) }}">{{ $user->first_name . $user->last_name }}</a></td>
+                        <td><a href="{{ url('users/' . $user->user_id) }}">{{ $user->first_name . ' ' . $user->last_name }}</a></td>
                     </tr>
                 @endforeach
             </tbody>

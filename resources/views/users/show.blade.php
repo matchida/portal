@@ -9,24 +9,62 @@
 <div class="container">
     {{-- 編集・削除ボタン --}}
     <div>
-        <a href="{{ url('users/'. $user['user_id']. '/edit') }}" class="btn btn-primary">
-            {{ __('Edit') }}
-        </a>
+        <a href="{{ url('users/'. $user['user_id']. '/edit') }}" class="btn btn-primary">編集</a>
         {{-- 削除ボタンは後で正式なものに置き換えます --}}
-        <a href="#" class="btn btn-danger">
-            {{ __('Delete') }}
-        </a>
+        <a href="#" class="btn btn-danger">削除</a>
     </div>
 
     {{-- ユーザー1件の情報 --}}
-    <dl class="row">
-        <dt class="col-md-2">{{ __('ID') }}</dt>
-        <dd class="col-md-10">{{ $user['user_id'] }}</dd>
-        <dt class="col-md-2">{{ __('Name') }}</dt>
-        <dd class="col-md-10">{{ $user['name'] }}</dd>
-        <dt class="col-md-2">{{ __('E-Mail') }}</dt>
-        <dd class="col-md-10">{{ $user['email'] }}</dd>
-    </dl>
+    <table>
+        <tr>
+            <th>社員番号</th>
+            <td>{{ $user['user_id'] }}</td>
+        </tr>
+        <tr>
+            <th>タイプ</th>
+            <td>{{ $user['user_type'] }}</td>
+        </tr>
+        <tr>
+            <th>名前</th>
+            <td>{{ $user['name'] }}</td>
+        </tr>
+        <tr>
+            <th>グループ</th>
+            <td>{{ $user['group'] }}</td>
+        </tr>
+        <tr>
+            <th>メールアドレス</th>
+            <td>{{ $user['email'] }}</td>
+        </tr>
+        <tr>
+            <th>生年月日</th>
+            <td>{{ $user['birthday']}} </td>
+        </tr>
+        <tr>
+            <th>入社日</th>
+            <td>{{ $user['joined'] }}</td>
+        </tr>
+        <tr>
+            <th>プログラミング</th>
+            <td>{{ $user['program'] }}</td>
+        </tr>
+        <tr>
+            <th>データベース</th>
+            <td>{{ $user['database'] }}</td>
+        </tr>
+        <tr>
+            <th>気になるもの</th>
+            <td>{{ $user['interested'] }}</td>
+        </tr>
+        <tr>
+            <th>ヒアリング状況</th>
+            <td>{{ $user['listening'] }}</td>
+        </tr>
+        <tr>
+            <th>コメント</th>
+            <td>{{ $user['comment'] }}</td>
+        </tr>
+    </table>
 </div>
 @endsection
 
