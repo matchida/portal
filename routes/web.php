@@ -14,4 +14,5 @@
 Route::get('/', 'IndexController@index');
 // ユーザ関連
 Route::resource('users', 'UserController');
-Route::get('/work', 'WorkController@index');
+Route::get('work', 'WorkController@index');
+Route::get('groups', 'GroupController@index');
